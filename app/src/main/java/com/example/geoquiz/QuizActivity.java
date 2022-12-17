@@ -7,11 +7,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.geoquiz.model.Question;
 
 public class QuizActivity extends AppCompatActivity {
+
+    private static final String KEY_INDEX = "index";
 
     private Button mTrueButton;
     private Button mFalseButton;
@@ -34,6 +37,9 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        if (savedInstanceState != null) {
+            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX);
+        }
 
         mQuestionTextView = findViewById(R.id.question_text_view);
         updateQuestion();
@@ -78,6 +84,12 @@ public class QuizActivity extends AppCompatActivity {
         });
 
         updateQuestion();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(KEY_INDEX, mCurrentIndex);
     }
 
     private void updateQuestion() {
