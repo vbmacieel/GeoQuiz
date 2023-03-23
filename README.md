@@ -3,4 +3,6 @@
 
 ### Technologies 🛠️:
 The technologies used in the project are:
-- Java
+- Java;
+- Intents;
+- Activities;
